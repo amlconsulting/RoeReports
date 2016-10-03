@@ -25,7 +25,7 @@ class SocialAccountService{
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
                     'password' => bcrypt('Welcome123!'),
-                    'token' => bcrypt($providerUser->getEmail())
+                    'token' => substr(str_shuffle(MD5($providerUser->getEmail() . microtime())), 0, 30)
                 ]);
             }
 
