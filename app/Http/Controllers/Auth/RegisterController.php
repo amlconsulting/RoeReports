@@ -68,4 +68,18 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+     * Confirm a user's email address
+     *
+     * @param string $token
+     * @return mixed
+     */
+    public function confirmEmail($token){
+        User::whereToken($token)->firstOrFail()->confirmEmail();
+
+        flash('You are now confirmed. Please login.');
+
+        return redirect('login');
+    }
 }
