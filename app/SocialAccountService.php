@@ -24,8 +24,7 @@ class SocialAccountService{
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
-                    'password' => bcrypt('Welcome123!'),
-                    'token' => substr(str_shuffle(MD5($providerUser->getEmail() . microtime())), 0, 30)
+                    'password' => bcrypt(rand(10, 15))
                 ]);
             }
 
