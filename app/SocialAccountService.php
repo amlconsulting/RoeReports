@@ -11,7 +11,7 @@ class SocialAccountService{
             ->first();
 
         if($account){
-            return $account->user();
+            return User::whereEmail($providerUser->getEmail())->first();
         } else {
             $account = new SocialAccount([
                 'provider_user_id' => $providerUser->getId(),
