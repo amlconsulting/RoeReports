@@ -6,6 +6,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -69,17 +70,4 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Confirm a user's email address
-     *
-     * @param string $token
-     * @return mixed
-     */
-    public function confirmEmail($token){
-        User::whereToken($token)->firstOrFail()->confirmEmail();
-
-        flash('You are now confirmed. Please login.');
-
-        return redirect('login');
-    }
 }
