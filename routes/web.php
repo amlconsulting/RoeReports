@@ -24,3 +24,8 @@ Route::get('/home', 'HomeController@index');
  */
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
+
+/**
+ * Email verification
+ */
+Route::get('user/activation/{token}', 'Auth\LoginController@activateUser')->name('user.activate');
