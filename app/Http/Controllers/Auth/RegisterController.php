@@ -33,7 +33,6 @@ class RegisterController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @var ActivationService
      * @return void
      */
     public function __construct(){
@@ -70,36 +69,4 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Confirm a user's email address
-     *
-     * @param string $token
-     * @return mixed
-     */
-    public function confirmEmail($token){
-        User::whereToken($token)->firstOrFail()->confirmEmail();
-
-        flash('You are now confirmed. Please login.');
-
-        return redirect('login');
-    }
-
-    /**
-     * Register user and send activation email
-     *
-     * @var Request
-     * @return mixed
-     */
-    public function register(Request $request){
-        $validator = $this-> validator($request->all());
-
-        if($validator->fails()){
-            $this->throwValidationException($request, $validator);
-        }
-
-        $user = $this->create($request->all());
-        $this->activationService->sendActivationMail($user);
-
-        return redirect('/login')->with('status', 'You have registered. Please check your email for a confirmation message.');
-    }
 }
