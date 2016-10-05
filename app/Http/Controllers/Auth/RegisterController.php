@@ -6,8 +6,6 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
-use App\ActivationService;
 
 class RegisterController extends Controller
 {
@@ -32,21 +30,13 @@ class RegisterController extends Controller
     protected $redirectTo = '/home';
 
     /**
-     * Activation Service
-     *
-     * @var ActivationService
-     */
-    protected $activationService;
-
-    /**
      * Create a new controller instance.
      *
-     * @var ActivationService
      * @return void
      */
-    public function __construct(ActivationService $activationService){
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
-        $this->activationService = $activationService;
+    public function __construct()
+    {
+        $this->middleware('guest');
     }
 
     /**
@@ -91,24 +81,5 @@ class RegisterController extends Controller
         flash('You are now confirmed. Please login.');
 
         return redirect('login');
-    }
-
-    /**
-     * Register user and send activation email
-     *
-     * @var Request
-     * @return mixed
-     */
-    public function register(Request $request){
-        $validator = $this-> validator($request->all());
-
-        if($validator->fails()){
-            $this->throwValidationException($request, $validator);
-        }
-
-        $user = $this->create($request->all());
-        $this->activationService->sendActivationMail($user);
-
-        return redirect('/login')->with('status', 'You have registered. Please check your email for a confirmation message.');
     }
 }
