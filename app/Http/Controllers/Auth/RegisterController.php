@@ -7,7 +7,6 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-use App\ActivationService;
 
 class RegisterController extends Controller
 {
@@ -32,21 +31,13 @@ class RegisterController extends Controller
     protected $redirectTo = '/home';
 
     /**
-     * Activation Service
-     *
-     * @var ActivationService
-     */
-    protected $activationService;
-
-    /**
      * Create a new controller instance.
      *
      * @var ActivationService
      * @return void
      */
-    public function __construct(ActivationService $activationService){
+    public function __construct(){
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
-        $this->activationService = $activationService;
     }
 
     /**
