@@ -21,7 +21,7 @@ class SocialAuthController extends Controller
         $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
 
         if(!$user->activated){
-            ActivationService()->sendActivationMail($user);
+            ActivationService::sendActivationMail($user);
             Auth::logout();
 
             return back()->with('warning', 'You need to confirm your account. We have sent you an email with an activation code.');
