@@ -41,7 +41,7 @@ class RoeReportsVerifyCsrf extends \Illuminate\Foundation\Http\Middleware\Verify
          * ALSO NEED TO SET ROUTES TO THE TOKEN EXCLUDE FILE INSTEAD OF HARDCODED HERE
          */
 
-        $routes = include '../../../routes/tokenexclude.php';
+        $routes = ['/send']; //include '../../../routes/tokenexclude.php';
 
         foreach($routes as $route){
             if($request->is($route) && base64_decode($request->input('token') === env('APP_API_SECRET'))){
