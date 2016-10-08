@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'RoeReports',
+    'name' => env('APP_NAME'),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://roereports.amlconsulting.net'),
+    'url' => env('APP_URL'),
 
     /*
     |--------------------------------------------------------------------------
