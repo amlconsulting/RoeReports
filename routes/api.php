@@ -20,4 +20,4 @@ Route::get('/user', function (Request $request) {
 /**
  * Sending Emails
  */
-Route::post('/send', 'EmailController@send');
+//Route::post('/send', 'EmailController@send');

@@ -28,4 +28,4 @@ Route::get('/callback', 'SocialAuthController@callback');
 /**
  * Sending Email
  */
-Route::post('/send', 'EmailController@send');
+//Route::post('/send', 'EmailController@send');
