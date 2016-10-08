@@ -9,6 +9,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Session\TokenMismatchException;
 
 class RoeReportsVerifyCsrf extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken {
     /**
