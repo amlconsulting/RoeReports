@@ -8,6 +8,8 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
+
 class RoeReportsVerifyCsrf extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken {
     /**
      * Handle the incoming request
