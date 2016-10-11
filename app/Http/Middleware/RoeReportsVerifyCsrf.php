@@ -22,9 +22,12 @@ class RoeReportsVerifyCsrf extends \Illuminate\Foundation\Http\Middleware\Verify
      * @throws \Illuminate\Session\TokenMismatchException
      */
     public function handle($request, Closure $next){
-        if($this->isReading($request) || $this->isAuthExcludedRoutes($request) || $this->tokensMatch($request)){
-            echo $this->isAuthExcludedRoutes($request);
-            //return $this->addCookieToResponse($request, $next($request));
+        if($this->isAuthExcludedRoutes($request)){
+            return $this->addCookieToResponse($request, $next($request));
+        }
+
+        if($this->isReading($request) || $this->tokensMatch($request)){
+            return $this->addCookieToResponse($request, $next($request));
         }
 
         throw new TokenMismatchException;
