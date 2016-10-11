@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | Token Excluded Routes
@@ -17,8 +15,4 @@ return [
     //Sending Emails
     '/send',
 ];
-
-/**
- * Sending Emails
- */
 
