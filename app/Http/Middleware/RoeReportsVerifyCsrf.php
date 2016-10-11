@@ -23,7 +23,8 @@ class RoeReportsVerifyCsrf extends \Illuminate\Foundation\Http\Middleware\Verify
      */
     public function handle($request, Closure $next){
         if($this->isReading($request) || $this->isAuthExcludedRoutes($request) || $this->tokensMatch($request)){
-            return $this->addCookieToResponse($request, $next($request));
+            echo $this->isAuthExcludedRoutes($request);
+            //return $this->addCookieToResponse($request, $next($request));
         }
 
         throw new TokenMismatchException;
