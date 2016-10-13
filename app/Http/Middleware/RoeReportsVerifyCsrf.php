@@ -9,5 +9,5 @@
 namespace App\Http\Middleware;
 
 class RoeReportsVerifyCsrf extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken {
-   protected $except = ['/send'];
+   protected $except = ['/send/welcome'];
 }
