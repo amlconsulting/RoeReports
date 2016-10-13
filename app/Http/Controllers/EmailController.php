@@ -15,15 +15,10 @@ class EmailController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function welcome(Request $request){
-        $data = array(
+        return $this->send('welcome', $request->input('email'), [
             'title' => $request->input('title'),
             'content' => $request->input('content')
-        );
-
-        $to = $request->input('email');
-
-        return response()->json(['keys' => $request->all(), 'data' => $data]);
-        //return $this->send('welcome', $to, $data);
+        ]);
     }
 
     /**
