@@ -10,11 +10,15 @@ class EmailController extends Controller
 {
 
     public function send(Request $request){
-        $title = $request->input('title');
-        $content = $request->input('content');
+        $data = array(
+            'title' => $request->input('title'),
+            'content' => $request->input('content')
+        );
 
-        Mail::send('emails.send', ['title' => $title, 'content' => $content], function($message) {
-            $message->to('amlane86@yahoo.com');
+        $to = $request->input('email');
+
+        Mail::send('emails.send', $data, function($message) use ($to){
+            $message->to($to);
         });
 
         return response()->json(['message' => 'Request completed']);
