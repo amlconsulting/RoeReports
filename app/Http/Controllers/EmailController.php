@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class EmailController extends Controller
 {
 
-    public function send(){
+    public function send(Request $request){
         $data = array(
             'title' => Input::get('title'),
             'content' => Input::get('content')
