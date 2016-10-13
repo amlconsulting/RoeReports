@@ -22,7 +22,7 @@ class EmailController extends Controller
 
         $to = $request->input('email');
 
-        return response()->json(['keys' => $_POST]);
+        return response()->json(['keys' => $_GET, 'test'=>'testing a new param']);
         //return $this->send('welcome', $to, $data);
     }
 
