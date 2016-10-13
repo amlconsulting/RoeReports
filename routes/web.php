@@ -28,4 +28,6 @@ Route::get('/callback', 'SocialAuthController@callback');
 /**
  * Sending Email
  */
-Route::post('/send', 'EmailController@send');
+Route::group(['prefix' => 'send'], function() {
+    Route::post('welcome', 'EmailController@welcome');
+});
