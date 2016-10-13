@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Mail;
-use Request;
+use Illuminate\Http\Request;
 
 class EmailController extends Controller
 {
