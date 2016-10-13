@@ -29,5 +29,5 @@ Route::get('/callback', 'SocialAuthController@callback');
  * Sending Email
  */
 Route::group(['prefix' => 'send'], function() {
-    Route::post('welcome', 'EmailController@welcome');
+    Route::get('welcome', 'EmailController@welcome');
 });
