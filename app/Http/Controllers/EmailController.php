@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Mail;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 class EmailController extends Controller
 {
 
-    public function send(Request $request){
+    public function send(){
         $data = array(
-            'title' => $request->input('title'),
-            'content' => $request->input('content')
+            'title' => Input::get('title'),
+            'content' => Input::get('content')
         );
 
-        $to = $request->input('email');
+        $to = Input::get('email');
 
         Mail::send('emails.send', $data, function($message) use ($to){
             $message->to($to);
