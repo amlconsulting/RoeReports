@@ -31,7 +31,7 @@ class EmailController extends Controller
      */
     private function send($layout, $to, $data){
         try {
-            Mail::send(['emails.' . $layout, 'emails.' . $layout . '.txt'], $data, function($message) use ($layout, $to){
+            Mail::send(['emails.html' . $layout, 'emails.text.' . $layout], $data, function($message) use ($layout, $to){
                 $message->to($to)->subject($this->getSubject($layout));
             });
         } catch(Exception $ex) {
