@@ -6,7 +6,7 @@ use Mail;
 use Illuminate\Http\Request;
 
 class EmailController extends Controller
-{//test
+{
 
     /**
      * Welcome email after registration
