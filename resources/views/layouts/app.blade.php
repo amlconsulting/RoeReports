@@ -8,10 +8,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ env('APP_NAME') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    @yield('styles')
 
     <!-- Scripts -->
     <script>
@@ -19,6 +20,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    @yield('top-scripts')
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -52,22 +54,25 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ url('/logout') }}"
-                                        onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        Logout
+                        <li>
+                            <ul class="nav navbar-top-links navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
-
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="{{ url('/dashboard') }}"><i class="fa fa-gear fa-fw"></i> Dashboard</a></li>
+                                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <i class="fa fa-sign-out fa-fw"></i> Logout
+                                            </a>
+                                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
@@ -80,6 +85,7 @@
     @yield('content')
 
     <!-- Scripts -->
+    @yield('bottom-scripts')
     <script src="/js/app.js"></script>
 </body>
 </html>
