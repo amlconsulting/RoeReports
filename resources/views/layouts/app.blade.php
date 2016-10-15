@@ -11,6 +11,7 @@
     <title>{{ env('APP_NAME') }}</title>
 
     <!-- Styles -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
     @yield('styles')
 
