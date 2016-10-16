@@ -31,3 +31,13 @@ Route::get('/callback', 'SocialAuthController@callback');
 Route::group(['prefix' => 'send'], function() {
     Route::post('welcome', 'EmailController@welcome');
 });
+
+/**
+ * User Profile
+ */
+Route::group(['prefix' => 'user'], function() {
+    Route::get('profile', 'UserController@profile');
+    Route::get('edit', 'UserController@edit');
+    Route::post('update', 'UserController@update');
+    Route::post('password', 'UserController@changePassword');
+});
