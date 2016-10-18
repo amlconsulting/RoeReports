@@ -20,11 +20,10 @@
                                 @endif
                             </div>
                         </div>
-                        <fieldset disabled>
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email" class="col-md-4 control-label"><abbr title="Cannot change login email address.">E-Mail Address</abbr></label>
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
+                                    <input id="email" type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" required readonly>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
@@ -32,14 +31,13 @@
                                     @endif
                                 </div>
                             </div>
-                        </fieldset>
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('notification_email') ? ' has-error' : '' }}">
                             <label for="notification_email" class="col-md-4 control-label">Notification E-Mail Address</label>
                             <div class="col-md-6">
-                                <input id="notification_email" type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
-                                @if ($errors->has('email'))
+                                <input id="notification_email" type="email" class="form-control" name="notification_email" value="{{ Auth::user()->notification_email }}" required>
+                                @if ($errors->has('notification_email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('notification_email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -57,6 +55,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/user/password') }}">
                         {{ csrf_field() }}
+                        <input id="email" type="hidden" name="email" value="{{ Auth::user()->email }}" required readonly>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
                             <div class="col-md-6">

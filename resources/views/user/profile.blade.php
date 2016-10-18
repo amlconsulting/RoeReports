@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label for="notification_email" class="col-md-4 control-label">Notification E-Mail Address</label>
-                            <div class="col-md-6 user_attribute">{{ Auth::user()->email }}</div>
+                            <div class="col-md-6 user_attribute">{{ Auth::user()->notification_email }}</div>
                         </div>
                     </form>
                 </div>

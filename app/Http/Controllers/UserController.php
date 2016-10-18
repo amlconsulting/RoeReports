@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\User;
+use Validator;
 
 class UserController extends Controller {
+
     /**
      * Create a new controller instance.
      *
@@ -43,7 +45,19 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request){
+        Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'notification_email' => 'required|email|max:255|unique:users'
+        ])->validate();
 
+        //$this->validator($request->all())->validate();
+
+        $user = User::whereEmail($request->input('email'))->first();
+        $user->name = $request->input('name');
+        $user->notification_email = $request->input('notification_email');
+        $user->save();
+
+        return redirect('user/profile');
     }
 
     /**
@@ -53,6 +67,16 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function changePassword(Request $request){
+        Validator::make($request->all(), [
+            'password' => 'required|min:6|confirmed'
+        ])->validate();
 
+        //$this->validator($request->all())->validate();
+
+        $user = User::whereEmail($request->input('email'))->first();
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+
+        return redirect('user/profile');
     }
 }

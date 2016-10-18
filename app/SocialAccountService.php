@@ -22,8 +22,9 @@ class SocialAccountService{
 
             if(!$user){
                 $user = User::create([
-                    'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
+                    'email' => $providerUser->getEmail(),
+                    'notification_email' => $providerUser->getEmail(),
                     'password' => bcrypt(rand(10, 15))
                 ]);
             }
