@@ -49,9 +49,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            //'password' => 'required|min:6|confirmed',
         ]);
     }
 
@@ -63,12 +64,48 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $password = $this->createRandomPassword();
+
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
             'notification_email' => $data['email'],
-            'password' => bcrypt($data['password'])
+            'password' => bcrypt($password)
         ]);
+
+
+    }
+
+    /**
+     * Create a random password
+     *
+     * @return String $password
+     */
+    private function createRandomPassword(){
+        $passwordLength = 15;
+        $sets = [
+            'upperAlpha' => 'ABCDEFGHJKMNPQRSTUVWXYZ',
+            'lowerAlpha' => 'abcdefghjkmnpqrstuvwxyz',
+            'number' => '23456789',
+            'symbol' => '!@#$%&*?'
+        ];
+
+        $all = "";
+        $password = "";
+
+        foreach($sets as $set) {
+            $password .= $set[array_rand(str_split($set))];
+            $all .= $set;
+        }
+
+        $all = str_split($all);
+
+        for($i = 0; $i < $passwordLength - count($sets); $i++){
+            $password .= $all[array_rand($all)];
+        }
+
+        return  str_shuffle($password);
     }
 
 }
