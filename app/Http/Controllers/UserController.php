@@ -45,17 +45,29 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request){
-        Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'notification_email' => 'required|email|max:255|unique:users'
-        ])->validate();
-
-        //$this->validator($request->all())->validate();
-
         $user = User::whereEmail($request->input('email'))->first();
-        $user->name = $request->input('name');
-        $user->notification_email = $request->input('notification_email');
-        $user->save();
+        $validations = [];
+
+        if($user->name !== $request->input('name')){
+            $validations['name'] = 'required|max:255';
+        }
+
+        if($user->notification_email !== $request->input('notification_email')){
+            $validations['notification_email'] = 'required|email|max:255|unique:users';
+        }
+
+        if(count($validations) > 0){
+            Validator::make($request->all(), $validations)->validate();
+
+            $user = User::whereEmail($request->input('email'))->first();
+            $user->name = $request->input('name');
+            $user->notification_email = $request->input('notification_email');
+            $user->save();
+
+            flash('Your account was updated.', 'success');
+        } else {
+            flash('There were no updates made to your account.', 'warning');
+        }
 
         return redirect('user/profile');
     }
@@ -71,11 +83,11 @@ class UserController extends Controller {
             'password' => 'required|min:6|confirmed'
         ])->validate();
 
-        //$this->validator($request->all())->validate();
-
         $user = User::whereEmail($request->input('email'))->first();
         $user->password = bcrypt($request->input('password'));
         $user->save();
+
+        flash('Your password was changed.', 'success');
 
         return redirect('user/profile');
     }
