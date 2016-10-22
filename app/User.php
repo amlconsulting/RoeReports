@@ -28,13 +28,25 @@ class User extends Authenticatable
     ];
 
     /**
-     * Confirm the user
+     * Boot the model.
+     *
+     */
+    public static function boot() {
+        parent::boot();
+
+        static::creating(function($user) {
+            $user->activation_token = str_random(40);
+        });
+    }
+
+    /**
+     * Activates the user's account
      *
      * @return void
      */
-    public function confirmEmail(){
+    public function activateUser() {
         $this->verified = true;
-        $this->token = null;
+        $this->activation_token = null;
         $this->save();
     }
 }

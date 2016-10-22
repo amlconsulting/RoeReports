@@ -23,7 +23,7 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label for="name" class="col-md-4 control-label">Name</label>
-                            <div class="col-md-6 user_attribute">{{ Auth::user()->name }}</div>
+                            <div class="col-md-6 user_attribute">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</div>
                         </div>
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>

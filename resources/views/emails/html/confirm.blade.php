@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up Confirmation</title>
-</head>
-<body>
-    <h1>Thanks for signing up!</h1>
+@extends('emails.html.layout')
 
-    <p>
-        We just need you to <a href='{{ url("register/confirm/{$user->token}") }}'>confirm your email 
-address</a> real quick!
-    </p>
-</body>
-</html>
+@section('content')
+<p>Thanks for signing up to RoeReports!</p>
+<p>We just need you to confirm your email address. Please click <a href='{{ url("register/confirm/{$user->activation_token}") }}'>here</a> to confirm.</p>
+<p>If that link doesn't work, please paste the link below into your favorite browser to confirm your email.</p>
+<p>{{ url("register/confirm/{$user->activation_token}") }}</p>
+@endsection

@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up Confirmation</title>
-</head>
-<body>
-<h1>Welcome to {{ env('APP_NAME') }}!</h1>
+@extends('emails.html.layout')
 
-<p>
-    We are happy you are here.
-</p>
-</body>
-</html>
+@section('content')
+<p>Welcome to {{ env('APP_NAME') }}!</p>
+<p>We are happy you are here. We guarantee that you will receive value from RoeReports or your money back.</p>
+@endsection

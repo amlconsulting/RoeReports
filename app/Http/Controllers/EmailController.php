@@ -3,36 +3,21 @@
 namespace App\Http\Controllers;
 
 use Mail;
-use Illuminate\Http\Request;
+use App\User;
 
-class EmailController extends Controller
-{
-
-    /**
-     * Welcome email after registration
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function welcome(Request $request){
-        return $this->send('welcome', $request->input('email'), [
-            'title' => $request->input('title'),
-            'content' => $request->input('content')
-        ]);
-    }
+class EmailController extends Controller {
 
     /**
-     * Send and email to the user
+     * Send an email to the user
      *
      * @param $layout
-     * @param $to
-     * @param $data
+     * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    private function send($layout, $to, $data){
+    public static function send($layout, User $user){
         try {
-            Mail::send(['emails.html.' . $layout, 'emails.text.' . $layout], $data, function($message) use ($layout, $to){
-                $message->to($to)->subject($this->getSubject($layout));
+            Mail::send(['emails.html.' . $layout, 'emails.text.' . $layout], ['user' => $user], function($message) use ($layout, $user){
+                $message->to($user['notification_email'])->subject(self::getSubject($layout));
             });
         } catch(Exception $ex) {
             return response()->json(['message' => $ex->getMessage()]);
@@ -47,10 +32,13 @@ class EmailController extends Controller
      * @param $layout
      * @return string
      */
-    private function getSubject($layout){
+    protected static function getSubject($layout){
         switch($layout){
             case 'welcome':
                 return 'Welcome to ' . env('APP_NAME') . '!';
+                break;
+            case 'confirm':
+                return 'Please confirm your email address';
                 break;
             default:
                 return 'Notification from ' . env('APP_NAME');

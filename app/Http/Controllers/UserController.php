@@ -48,8 +48,12 @@ class UserController extends Controller {
         $user = User::whereEmail($request->input('email'))->first();
         $validations = [];
 
-        if($user->name !== $request->input('name')){
-            $validations['name'] = 'required|max:255';
+        if($user->name !== $request->input('first_name')){
+            $validations['first_name'] = 'required|max:255';
+        }
+
+        if($user->name !== $request->input('last_name')){
+            $validations['last_name'] = 'required|max:255';
         }
 
         if($user->notification_email !== $request->input('notification_email')){
@@ -60,7 +64,8 @@ class UserController extends Controller {
             Validator::make($request->all(), $validations)->validate();
 
             $user = User::whereEmail($request->input('email'))->first();
-            $user->name = $request->input('name');
+            $user->first_name = $request->input('first_name');
+            $user->last_name = $request->input('last_name');
             $user->notification_email = $request->input('notification_email');
             $user->save();
 

@@ -15,7 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+
 Auth::routes();
+
+/**
+ * User Registration
+ */
+Route::group(['prefix' => 'register'], function() {
+    Route::get('confirm/{activation_token}', 'Auth\RegisterController@confirm');
+});
 
 Route::get('/dashboard', 'DashboardController@index');
 
@@ -24,13 +35,6 @@ Route::get('/dashboard', 'DashboardController@index');
  */
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
-
-/**
- * Sending Email
- */
-Route::group(['prefix' => 'send'], function() {
-    Route::post('welcome', 'EmailController@welcome');
-});
 
 /**
  * User Profile
