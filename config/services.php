@@ -25,4 +25,9 @@ return [
         'redirect' => env('APP_URL') . '/callback',
     ],
 
+    'stripe' => [
+        'model' => App\User::class,
+        'secret' => env('STRIPE_SECRET'),
+    ],
+
 ];

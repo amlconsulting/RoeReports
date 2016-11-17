@@ -45,3 +45,12 @@ Route::group(['prefix' => 'user'], function() {
     Route::post('update', 'UserController@update');
     Route::post('password', 'UserController@changePassword');
 });
+
+/**
+ * Stripe
+ */
+Route::group(['prefix' => 'subscription'], function() {
+    Route::get('secret', function() {
+        return Config::get('services.stripe.secret');
+    });
+});
