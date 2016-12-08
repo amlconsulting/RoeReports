@@ -9,7 +9,8 @@
         "laravel/framework": "5.3.*",
         "laravel/socialite": "^2.0",
         "laracasts/flash": "^2.0",
-        "laravel/cashier": "^7.0"
+        "laravel/cashier": "^7.0",
+        "stripe/stripe-php": "v3.9.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -49,5 +50,14 @@
     },
     "config": {
         "preferred-install": "dist"
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.org"
+        },
+        {
+            "packagist": false
+        }
+    ]
 }

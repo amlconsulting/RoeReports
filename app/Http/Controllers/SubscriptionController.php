@@ -12,6 +12,7 @@ class SubscriptionController extends Controller {
 
     public function __construct() {
         $this->middleware('auth');
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
     }
 
     public function getUserSubscription() {
@@ -21,15 +22,11 @@ class SubscriptionController extends Controller {
     /**
      * Shows the user the plan choices
      *
-     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function plans(Request $request) {
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        $plans = Stripe\Plan::all();
-
+    public function plans() {
         return view('subscriptions.plans', [
-            'plans' => $plans
+            'plans' => Stripe\Plan::all()->__toArray()
         ]);
     }
 
