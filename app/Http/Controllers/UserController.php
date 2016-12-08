@@ -25,7 +25,13 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function profile(Request $request) {
-        return view('user.profile', ['user' => $request->getUser()]);
+        return view('user.profile',
+            [
+                'user' => $request->user(),
+                'onTrial' => $request->user()->onGenericTrial(),
+                'subscribed' => $request->user()->subscribed('basic')
+            ]
+        );
     }
 
     /**
@@ -35,7 +41,7 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request) {
-        return view('user.edit', ['user' => $request->getUser()]);
+        return view('user.edit', ['user' => $request->user()]);
     }
 
     /**

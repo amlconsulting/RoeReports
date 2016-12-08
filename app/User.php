@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Cashier\Billable;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -30,6 +31,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that should be mutated to dates
+     *
+     * @var array
+     */
+    protected $dates = [
+        'trial_ends_at'
+    ];
+
+    /**
      * Boot the model.
      *
      */
@@ -49,6 +59,7 @@ class User extends Authenticatable
     public function activateUser() {
         $this->verified = true;
         $this->activation_token = null;
+        $this->trial_ends_at = Carbon::now()->addDays(14);
         $this->save();
     }
 }

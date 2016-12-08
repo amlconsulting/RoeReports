@@ -53,4 +53,11 @@ Route::group(['prefix' => 'subscription'], function() {
     Route::get('secret', function() {
         return Config::get('services.stripe.secret');
     });
+
+    Route::get('edit', function() {
+        return Auth::user();
+    });
+
+    Route::get('plans', 'SubscriptionController@plans');
+    Route::get('subscribe', 'SubscriptionController@subscribe');
 });

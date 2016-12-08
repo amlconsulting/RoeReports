@@ -7,3 +7,11 @@ div.alert {
     width: 400px;
     z-index: 1000;
 }
+
+div.center {
+    text-align: center;
+}
+
+div.right {
+    text-align: right;
+}

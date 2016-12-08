@@ -15,8 +15,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-md-2">User Profile</div>
-                        <div class="col-md-2 col-md-offset-8"><i class="fa fa-gear fa-fw">&nbsp;<a href="{{ url('/user/edit') }}"></i>Edit Profile</a></div>
+                        <div class="col-md-6">User Profile</div>
+                        <div class="col-md-6 right"><i class="fa fa-gear fa-fw">&nbsp;</i><a href="{{ url('/user/edit') }}">Edit Profile</a></div>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -39,29 +39,42 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-md-2">Subscription Details</div>
-                        <div class="col-md-2 col-md-offset-8"><i class="fa fa-gear fa-fw">&nbsp;<a href="{{ url('/subscription/edit') }}"></i>Change Subscription</a></div>
+                        <div class="col-md-6">Subscription Details</div>
+                        <div class="col-md-6 right"><i class="fa fa-gear fa-fw">&nbsp;</i><a href="{{ url('/subscription/edit') }}">Change Subscription</a></div>
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-                            <div class="col-md-6 user_attribute"></div>
+                    @if($subscribed)
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="name" class="col-md-4 control-label">Name</label>
+                                <div class="col-md-6 user_attribute"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="price" class="col-md-4 control-label">Price</label>
+                                <div class="col-md-6 user_attribute"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="payment" class="col-md-4 control-label">Payment</label>
+                                <div class="col-md-6 user_attribute">{{ Auth::user()->card_brand }} ending with {{ Auth::user()->card_last_four }}</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="renews_on" class="col-md-4 control-label">Renews On</label>
+                                <div class="col-md-6 user_attribute"></div>
+                            </div>
+                        </form>
+                    @elseif($onTrial)
+                        <div class="row">
+                            <div class="col-md-12 center">You are currently on a trial. Your trial ends at <strong>{{ Carbon\Carbon::parse(Auth::user()->trial_ends_at)->format('g:i a') }}</strong> on <strong>{{ Carbon\Carbon::parse(Auth::user()->trial_ends_at)->format('m-d-Y') }}</strong></div>
                         </div>
-                        <div class="form-group">
-                            <label for="price" class="col-md-4 control-label">Price</label>
-                            <div class="col-md-6 user_attribute"></div>
+                        <div class="row">
+                            <div class="col-md-12 center">If you would like to sign up for service, please click <a href="{{ url('/subscription/subscribe') }}">here</a>.</div>
                         </div>
-                        <div class="form-group">
-                            <label for="payment" class="col-md-4 control-label">Payment</label>
-                            <div class="col-md-6 user_attribute">{{ Auth::user()->card_brand }} ending with {{ Auth::user()->card_last_four }}</div>
+                    @else
+                        <div class="row">
+                            <div class="col-md-12 center">You are not subscribed or your trial period has ended. If you would like to sign up for service, please click <a href="{{ url('/subscription/subscribe') }}">here</a>.</div>
                         </div>
-                        <div class="form-group">
-                            <label for="renews_on" class="col-md-4 control-label">Renews On</label>
-                            <div class="col-md-6 user_attribute"></div>
-                        </div>
-                    </form>
+                    @endif
                 </div>
             </div>
         </div>
