@@ -59,7 +59,6 @@ class User extends Authenticatable
     public function activateUser() {
         $this->verified = true;
         $this->activation_token = null;
-        $this->trial_ends_at = Carbon::now()->addDays(14);
         $this->save();
     }
 }

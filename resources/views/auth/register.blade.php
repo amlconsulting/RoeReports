@@ -7,6 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
+                    <p class="center">You will be able to select a plan from your profile after registering and confirming your email.</p>
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 

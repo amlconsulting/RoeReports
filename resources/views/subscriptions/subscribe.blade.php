@@ -2,5 +2,6 @@
 
 @section('content')
 {{ $plan }}<br>
-{{ $token }}
+{{ $token }}<br>
+{{ $subscribed }}
 @endsection

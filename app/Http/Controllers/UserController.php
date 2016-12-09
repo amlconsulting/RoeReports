@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use Validator;
+use Stripe;
+use Laravel\Cashier;
 
 class UserController extends Controller {
 
@@ -25,11 +27,29 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function profile(Request $request) {
+        Stripe\Stripe::setApiKey(Cashier\Billable::getStripeKey());
+
+        $user = $request->user();
+        $subscribed = $user->subscribed('main');
+
+        if($subscribed) {
+            $subscription = $user->subscription('main');
+            $onGracePeriod = $subscription->onGracePeriod();
+            $plan = Stripe\Plan::retrieve($subscription['attributes']['stripe_plan']);
+        } else {
+            $subscription = null;
+            $onGracePeriod = null;
+            $plan = null;
+        }
+
         return view('user.profile',
             [
-                'user' => $request->user(),
-                'onTrial' => $request->user()->onGenericTrial(),
-                'subscribed' => $request->user()->subscribed('basic')
+                'user' => $user,
+                'onTrial' => ($subscribed) ? $subscription->onTrial(): false,
+                'subscribed' => $subscribed,
+                'subscription' => $subscription,
+                'onGracePeriod' => $onGracePeriod,
+                'plan' => $plan
             ]
         );
     }

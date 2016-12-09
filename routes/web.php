@@ -58,6 +58,10 @@ Route::group(['prefix' => 'subscription'], function() {
         return Auth::user();
     });
 
+    Route::get('view-plans', 'SubscriptionController@viewPlans');
     Route::get('plans', 'SubscriptionController@plans');
     Route::post('subscribe/{plan}', 'SubscriptionController@subscribe');
+    Route::get('swap/{plan}', 'SubscriptionController@swap');
+    Route::get('cancel/{plan}', 'SubscriptionController@cancel');
+    Route::get('resume', 'SubscriptionController@resume');
 });

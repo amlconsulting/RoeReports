@@ -1,17 +1,21 @@
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.top-margin-md {
+    margin-top: 20px;
+}
+
 div.alert {
     height: 30px;
     margin: auto;
     padding: 4px 15px;
     position: relative;
     top: 110px;
-    width: 400px;
+    width: 500px;
     z-index: 1000;
-}
-
-div.center {
-    text-align: center;
-}
-
-div.right {
-    text-align: right;
 }

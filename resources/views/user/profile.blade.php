@@ -11,7 +11,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
@@ -22,15 +22,15 @@
                 <div class="panel-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-6 control-label">Name</label>
                             <div class="col-md-6 user_attribute">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</div>
                         </div>
                         <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-6 control-label">E-Mail Address</label>
                             <div class="col-md-6 user_attribute">{{ Auth::user()->email }}</div>
                         </div>
                         <div class="form-group">
-                            <label for="notification_email" class="col-md-4 control-label">Notification E-Mail Address</label>
+                            <label for="notification_email" class="col-md-6 control-label">Notification E-Mail Address</label>
                             <div class="col-md-6 user_attribute">{{ Auth::user()->notification_email }}</div>
                         </div>
                     </form>
@@ -45,31 +45,42 @@
                 </div>
                 <div class="panel-body">
                     @if($subscribed)
+                        @if($onGracePeriod)
+                            <div class="row">
+                                <div class="col-md-12 center">
+                                    You are set to be canceled after your {{ ($onTrial) ? 'trial' : 'current' }} period. You will not be charged after your {{ ($onTrial) ? 'trial' : 'current' }} period ends.
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 center">
+                                    Click <a href="{{ url('subscription/resume') }}">here</a> to resume your subscription so you don't miss out.
+                                </div>
+                            </div>
+                        @elseif($onTrial)
+                            <div class="row">
+                                <div class="col-md-12 center">
+                                    You are on trial and have not been charged yet. You will be charged after your trial period ends.
+                                </div>
+                            </div>
+                        @endif
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label for="name" class="col-md-4 control-label">Name</label>
-                                <div class="col-md-6 user_attribute"></div>
+                                <label for="plan" class="col-md-6 control-label">Plan</label>
+                                <div class="col-md-5 user_attribute">{{ $plan->name }} (${{ $plan->amount / 100 }}/{{ $plan->interval }})</div>
                             </div>
                             <div class="form-group">
-                                <label for="price" class="col-md-4 control-label">Price</label>
-                                <div class="col-md-6 user_attribute"></div>
+                                <label for="payment" class="col-md-6 control-label">Payment</label>
+                                <div class="col-md-5 user_attribute">{{ Auth::user()->card_brand }} ending in {{ Auth::user()->card_last_four }}</div>
                             </div>
                             <div class="form-group">
-                                <label for="payment" class="col-md-4 control-label">Payment</label>
-                                <div class="col-md-6 user_attribute">{{ Auth::user()->card_brand }} ending with {{ Auth::user()->card_last_four }}</div>
-                            </div>
-                            <div class="form-group">
-                                <label for="renews_on" class="col-md-4 control-label">Renews On</label>
-                                <div class="col-md-6 user_attribute"></div>
+                                <label for="renews_on" class="col-md-6 control-label">Period Ends</label>
+                                @if($onTrial)
+                                    <div class="col-md-6 user_attribute">{{ Carbon\Carbon::parse($subscription->trial_ends_at)->format('m-d-Y') }} at {{ Carbon\Carbon::parse($subscription->trial_ends_at)->format('g:i a') }}</div>
+                                @else
+                                    <div class="col-md-6 user_attribute">{{ Carbon\Carbon::parse($subscription->ends_at)->format('m-d-Y') }} at {{ Carbon\Carbon::parse($subscription->ends_at)->format('g:i a') }}</div>
+                                @endif
                             </div>
                         </form>
-                    @elseif($onTrial)
-                        <div class="row">
-                            <div class="col-md-12 center">You are currently on a trial. Your trial ends at <strong>{{ Carbon\Carbon::parse(Auth::user()->trial_ends_at)->format('g:i a') }}</strong> on <strong>{{ Carbon\Carbon::parse(Auth::user()->trial_ends_at)->format('m-d-Y') }}</strong></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 center">If you would like to sign up for service, please click <a href="{{ url('/subscription/plans') }}">here</a>.</div>
-                        </div>
                     @else
                         <div class="row">
                             <div class="col-md-12 center">You are not subscribed or your trial period has ended. If you would like to sign up for service, please click <a href="{{ url('/subscription/plans') }}">here</a>.</div>
