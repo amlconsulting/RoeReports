@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Laravel\Cashier;
 use Stripe;
 
 class SubscriptionController extends Controller {
@@ -12,7 +13,7 @@ class SubscriptionController extends Controller {
 
     public function __construct() {
         $this->middleware('auth');
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Stripe::setApiKey(Cashier\Billable::getStripeKey());
     }
 
     public function getUserSubscription() {
@@ -25,8 +26,19 @@ class SubscriptionController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function plans() {
+        $this->middleware('guest');
+        $plans = Stripe\Plan::all()->__toArray();
+
+        $sorted_plans = Array();
+
+        foreach($plans['data'] as $plan) {
+            $sorted_plans[$plan['metadata']['sequence']] = $plan;
+        }
+
+        ksort($sorted_plans);
+
         return view('subscriptions.plans', [
-            'plans' => Stripe\Plan::all()->__toArray()
+            'plans' => $sorted_plans
         ]);
     }
 
@@ -34,9 +46,15 @@ class SubscriptionController extends Controller {
      * Open the subscribe form to the user
      *
      * @param Request $request
+     * @param String $plan
      * @return \Illuminate\Http\Response
      */
-    public function subscribe(Request $request) {
+    public function subscribe(Request $request, $plan) {
+        $token = Input::get('stripeToken');
 
+        return view('subscriptions.subscribe', [
+            'plan' => $plan,
+            'token' => $token
+        ]);
     }
 }

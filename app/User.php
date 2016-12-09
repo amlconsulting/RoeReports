@@ -36,7 +36,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $dates = [
-        'trial_ends_at'
+        'trial_ends_at', 'subscription_ends_at'
     ];
 
     /**

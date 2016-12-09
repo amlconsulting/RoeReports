@@ -59,5 +59,5 @@ Route::group(['prefix' => 'subscription'], function() {
     });
 
     Route::get('plans', 'SubscriptionController@plans');
-    Route::get('subscribe', 'SubscriptionController@subscribe');
+    Route::post('subscribe/{plan}', 'SubscriptionController@subscribe');
 });

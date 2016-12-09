@@ -40,7 +40,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-6">Subscription Details</div>
-                        <div class="col-md-6 right"><i class="fa fa-gear fa-fw">&nbsp;</i><a href="{{ url('/subscription/edit') }}">Change Subscription</a></div>
+                        <div class="col-md-6 right"><i class="fa fa-gear fa-fw">&nbsp;</i><a href="{{ url('/subscription/plans') }}">Change Subscription</a></div>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -68,11 +68,11 @@
                             <div class="col-md-12 center">You are currently on a trial. Your trial ends at <strong>{{ Carbon\Carbon::parse(Auth::user()->trial_ends_at)->format('g:i a') }}</strong> on <strong>{{ Carbon\Carbon::parse(Auth::user()->trial_ends_at)->format('m-d-Y') }}</strong></div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12 center">If you would like to sign up for service, please click <a href="{{ url('/subscription/subscribe') }}">here</a>.</div>
+                            <div class="col-md-12 center">If you would like to sign up for service, please click <a href="{{ url('/subscription/plans') }}">here</a>.</div>
                         </div>
                     @else
                         <div class="row">
-                            <div class="col-md-12 center">You are not subscribed or your trial period has ended. If you would like to sign up for service, please click <a href="{{ url('/subscription/subscribe') }}">here</a>.</div>
+                            <div class="col-md-12 center">You are not subscribed or your trial period has ended. If you would like to sign up for service, please click <a href="{{ url('/subscription/plans') }}">here</a>.</div>
                         </div>
                     @endif
                 </div>

@@ -7,10 +7,9 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            @foreach($plans['data'] as $plan)
-                {{ var_dump($plan) }}
-                <div class="pricing-table">
+        <div class="col-md-12 center">
+            @foreach($plans as $plan)
+                <div class="pricing-table {{ ($plan['metadata']['featured'] === 'yes') ? 'featured' : '' }}">
                     <div class="pricing-table-header">
                         <h1>{{ $plan['name'] }}</h1>
                     </div>
@@ -25,11 +24,27 @@
                     <div class="pricing-table-footer">
                         <h2><sup>$</sup>{{ $plan['amount'] / 100 }}</h2>
                         <p>per {{ $plan['interval'] }}</p>
-                        <a href="{{ url('subscription/signup/' . $plan['id']) }}">Sign Up</a>
+                        <form action="{{ url('subscription/subscribe/' . $plan['id']) }}" method="POST">
+                            {{ csrf_field() }}
+                            <script
+                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="{{ env('STRIPE_PUBLIC') }}"
+                                data-amount="{{ $plan['amount']}}"
+                                data-name="{{ env('APP_NAME') }}"
+                                data-description="{{ $plan['name'] }}"
+                                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                data-locale="auto"
+                                data-email="{{ Auth::user()->email }}"
+                                data-label="Select"
+                                data-allowRememberMe="false"
+                                data-billingAddress="true">
+                            </script>
+                        </form>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
+    <div
 </div>
 @endsection

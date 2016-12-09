@@ -62,6 +62,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
+                            <li><a href="{{ url('/subscriptions/plans') }}"><i class="fa fa-user fa-fw"></i> Pricing</a></li>
                             <li><a href="{{ url('/register') }}"><i class="fa fa-user fa-fw"></i> Register</a></li>
                             <li><a href="{{ url('/login') }}"><i class="fa fa-sign-in fa-fw"></i> Login</a></li>
                         @else
