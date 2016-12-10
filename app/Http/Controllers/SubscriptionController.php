@@ -136,6 +136,26 @@ class SubscriptionController extends Controller {
     }
 
     /**
+     * Update the user's card
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCard(Request $request) {
+        $this->middleware('auth');
+
+        try {
+            $request->user()->updateCard($request->input('stripeToken'));
+        } catch(Exceptions $e) {
+            flash('There was a problem updating your card information.', 'warning');
+        }
+
+        flash('Your card has been updated.', 'success');
+
+        return redirect('user/profile');
+    }
+
+    /**
      * Get the sorted plans
      *
      * @return Array $plans

@@ -63,14 +63,48 @@
                                 </div>
                             </div>
                         @endif
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" id="payment-form" action="{{ url('subscription/update-card') }}" method="POST">
                             <div class="form-group">
                                 <label for="plan" class="col-md-6 control-label">Plan</label>
                                 <div class="col-md-5 user_attribute">{{ $plan->name }} (${{ $plan->amount / 100 }}/{{ $plan->interval }})</div>
                             </div>
                             <div class="form-group">
                                 <label for="payment" class="col-md-6 control-label">Payment</label>
-                                <div class="col-md-5 user_attribute">{{ Auth::user()->card_brand }} ending in {{ Auth::user()->card_last_four }}</div>
+                                <div class="col-md-5 user_attribute">
+                                    {{ Auth::user()->card_brand }} ending in {{ Auth::user()->card_last_four }}&nbsp;
+                                    <script src="https://checkout.stripe.com/checkout.js"></script>
+                                    <a href="javascript:;" id="edit-card">edit</a>
+                                    {{ csrf_field() }}
+                                    <script>
+                                        var handler = StripeCheckout.configure({
+                                            key: '{{ env('STRIPE_PUBLIC') }}',
+                                            image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+                                            locale: 'auto',
+                                            token: function(token) {
+                                                $('#payment-form')
+                                                    .append('<input type="hidden" name="stripeToken" value="' + token.id + '">')
+                                                    .submit();
+                                            }
+                                        });
+
+                                        document.getElementById('edit-card').addEventListener('click', function(e) {
+                                            // Open Checkout with further options:
+                                            handler.open({
+                                                name: '{{ env('APP_NAME') }}',
+                                                email: '{{ Auth::user()->notification_email }}',
+                                                panelLabel: 'Update Card Details',
+                                                allowRememberMe: false,
+                                                billingAddress: true
+                                            });
+                                            e.preventDefault();
+                                        });
+
+                                        // Close Checkout on page navigation:
+                                        window.addEventListener('popstate', function() {
+                                            handler.close();
+                                        });
+                                    </script>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="renews_on" class="col-md-6 control-label">Period Ends</label>

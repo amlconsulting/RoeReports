@@ -36,17 +36,17 @@
                             <form action="{{ url('subscription/subscribe/' . $plan['id']) }}" method="POST">
                                 {{ csrf_field() }}
                                 <script
-                                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="{{ env('STRIPE_PUBLIC') }}"
-                                        data-amount="{{ $plan['amount']}}"
-                                        data-name="{{ env('APP_NAME') }}"
-                                        data-description="{{ $plan['name'] }}"
-                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                        data-locale="auto"
-                                        data-email="{{ Auth::user()->notification_email }}"
-                                        data-label="Select"
-                                        data-allow-remember-me="false"
-                                        data-billing-address="true">
+                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="{{ env('STRIPE_PUBLIC') }}"
+                                    data-amount="{{ $plan['amount']}}"
+                                    data-name="{{ env('APP_NAME') }}"
+                                    data-description="{{ $plan['name'] }}"
+                                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                    data-locale="auto"
+                                    data-email="{{ Auth::user()->notification_email }}"
+                                    data-label="Select"
+                                    data-allow-remember-me="false"
+                                    data-billing-address="true">
                                 </script>
                             </form>
                         @endif

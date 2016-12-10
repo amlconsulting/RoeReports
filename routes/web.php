@@ -64,4 +64,5 @@ Route::group(['prefix' => 'subscription'], function() {
     Route::get('swap/{plan}', 'SubscriptionController@swap');
     Route::get('cancel/{plan}', 'SubscriptionController@cancel');
     Route::get('resume', 'SubscriptionController@resume');
+    Route::post('update-card', 'SubscriptionController@updateCard');
 });
