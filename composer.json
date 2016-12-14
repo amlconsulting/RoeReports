@@ -10,8 +10,7 @@
         "laravel/socialite": "^2.0",
         "laracasts/flash": "^2.0",
         "laravel/cashier": "^7.0",
-        "stripe/stripe-php": "v3.9.2",
-        "onokumus/metismenu": "^2.6"
+        "stripe/stripe-php": "v3.9.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
