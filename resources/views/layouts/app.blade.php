@@ -11,10 +11,13 @@
         <title>{{ env('APP_NAME') }}</title>
 
         <!-- Styles -->
-        <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/css/app.css" rel="stylesheet">
-        <link href="/css/RoeReports.css" rel="stylesheet">
+        <link href="{{ url('/css/app.css') }}" rel="stylesheet">
+        @yield('vendor-styles')
+        <link href="{{ url('/css/RoeReports.css') }}" rel="stylesheet">
         @yield('styles')
+
+        <!-- Custom Fonts -->
+        <link href="{{ url('/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         <script>
@@ -22,8 +25,13 @@
                 'csrfToken' => csrf_token(),
             ]); ?>
         </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        @yield('top-scripts')
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
     <body>
         <!-- Notification Area -->
@@ -35,7 +43,7 @@
         </div>
         @endif
 
-        <nav class="navbar navbar-inverse navbar-static-top">
+        <nav class="navbar navbar-inverse navbar-static-top" id="main-nav">
             <div class="container">
                 <div class="navbar-header">
 
@@ -63,7 +71,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/subscription/view-plans') }}"><i class="fa fa-user fa-fw"></i> Pricing</a></li>
+                            <li><a href="{{ url('/subscription/view-plans') }}"><i class="fa fa-tags fa-fw"></i> Pricing</a></li>
                             <li><a href="{{ url('/register') }}"><i class="fa fa-user fa-fw"></i> Register</a></li>
                             <li><a href="{{ url('/login') }}"><i class="fa fa-sign-in fa-fw"></i> Login</a></li>
                         @else
@@ -86,8 +94,9 @@
         @yield('content')
 
         <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="{{ url('/js/app.js') }}"></script>
         @yield('bottom-scripts')
-        <script src="/js/app.js"></script>
-        <script src="/js/RoeReports.js"></script>
+        <script src="{{ url('/js/RoeReports.js') }}"></script>
     </body>
 </html>

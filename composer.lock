@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2292a04ca4d77069d6e34a0345ca321c",
-    "content-hash": "a00ed978aecb1e74f1a2b113fc7fda8f",
+    "hash": "3253b2f8976bfe898b4baea05d0ac28e",
+    "content-hash": "a7a89b308d37dd0b9347f406f6bc8b89",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1168,6 +1168,48 @@
                 "php"
             ],
             "time": "2016-09-16 12:04:44"
+        },
+        {
+            "name": "onokumus/metismenu",
+            "version": "v2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onokumus/metisMenu.git",
+                "reference": "662528114386eb025f3992e41a90c75699bb5926"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/onokumus/metisMenu/zipball/662528114386eb025f3992e41a90c75699bb5926",
+                "reference": "662528114386eb025f3992e41a90c75699bb5926",
+                "shasum": ""
+            },
+            "suggest": {
+                "components/jquery": ">=1.8"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Osman Nuri Okumus",
+                    "email": "onokumus@gmail.com",
+                    "homepage": "http://onokumus.com"
+                }
+            ],
+            "description": "A jQuery menu plugin",
+            "homepage": "https://github.com/onokumus/metisMenu",
+            "keywords": [
+                "JS",
+                "bootstrap",
+                "css",
+                "jquery",
+                "menu",
+                "plugin",
+                "web"
+            ],
+            "time": "2016-12-06 07:11:48"
         },
         {
             "name": "paragonie/random_compat",

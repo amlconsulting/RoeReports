@@ -3,26 +3,58 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return mixed
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
+     * Show the user's dashboard.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('dashboard');
+    public function dashboard(Request $request) {
+        if(!$request->user()->subscribed('main')) {
+            return redirect('subscription/plans');
+        }
+
+        return view('dashboard.dashboard');
+    }
+
+    /**
+     * Show the user's invoices.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function invoices(Request $request) {
+        if(!$request->user()->subscribed('main')) {
+            return redirect('subscription/plans');
+        }
+
+        return view('dashboard.invoices');
+    }
+
+    /**
+     * Show the user's sales.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function sales(Request $request) {
+        if(!$request->user()->subscribed('main')) {
+            return redirect('subscription/plans');
+        }
+
+        return view('dashboard.sales');
     }
 }

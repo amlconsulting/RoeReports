@@ -28,7 +28,14 @@ Route::group(['prefix' => 'register'], function() {
     Route::get('confirm/{activation_token}', 'Auth\RegisterController@confirm');
 });
 
-Route::get('/dashboard', 'DashboardController@index');
+/**
+ * Dashboard
+ */
+Route::group(['prefix' => 'dashboard'], function() {
+    Route::get('/', 'DashboardController@dashboard');
+    Route::get('/invoices', 'DashboardController@invoices');
+    Route::get('/sales', 'DashboardController@sales');
+});
 
 /**
  * SocialAuth

@@ -4141,5 +4141,49 @@
         ],
         "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
         "homepage": "https://github.com/dompdf/dompdf"
+    },
+    {
+        "name": "onokumus/metismenu",
+        "version": "v2.6.1",
+        "version_normalized": "2.6.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/onokumus/metisMenu.git",
+            "reference": "662528114386eb025f3992e41a90c75699bb5926"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/onokumus/metisMenu/zipball/662528114386eb025f3992e41a90c75699bb5926",
+            "reference": "662528114386eb025f3992e41a90c75699bb5926",
+            "shasum": ""
+        },
+        "suggest": {
+            "components/jquery": ">=1.8"
+        },
+        "time": "2016-12-06 07:11:48",
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Osman Nuri Okumus",
+                "email": "onokumus@gmail.com",
+                "homepage": "http://onokumus.com"
+            }
+        ],
+        "description": "A jQuery menu plugin",
+        "homepage": "https://github.com/onokumus/metisMenu",
+        "keywords": [
+            "JS",
+            "bootstrap",
+            "css",
+            "jquery",
+            "menu",
+            "plugin",
+            "web"
+        ]
     }
 ]
