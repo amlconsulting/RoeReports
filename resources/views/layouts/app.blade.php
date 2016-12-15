@@ -13,11 +13,9 @@
         <!-- Styles -->
         <link href="{{ url('/css/app.css') }}" rel="stylesheet">
         @yield('vendor-styles')
+        <link href="{{ url('/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
         <link href="{{ url('/css/RoeReports.css') }}" rel="stylesheet">
         @yield('styles')
-
-        <!-- Custom Fonts -->
-        <link href="{{ url('/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         <script>

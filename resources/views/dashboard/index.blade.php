@@ -10,24 +10,38 @@
         #main-nav {
             margin-bottom: 0px;
         }
+
+        .navbar {
+            min-height: 0px;
+        }
+
+        .sidebar ul li {
+            background-color: #F5F5F5;
+        }
     </style>
 @endsection
 
 @section('content')
-    <div class="navbar-default sidebar" role="navigation">
-        <ul class="nav" id="side-menu">
-            <li>
-                <a href="{{ url('dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-            </li>
-            <li>
-                <a href="{{ url('dashboard/invoices') }}"><i class="fa fa-files-o fa-fw"></i> Invoices</a>
-            </li>
-            <li>
-                <a href="{{ url('dashboard/sales') }}"><i class="fa fa-th-list fa-fw"></i> Sales</a>
-            </li>
-        </ul>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/dashboard/invoices') }}"><i class="fa fa-files-o fa-fw"></i> Invoices</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/dashboard/sales') }}"><i class="fa fa-tags fa-fw"></i> Sales</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        @yield('page')
     </div>
-    @yield('page')
 @endsection
 
 @section('bottom-scripts')
