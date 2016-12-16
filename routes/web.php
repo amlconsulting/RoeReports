@@ -35,7 +35,6 @@ Route::group(['prefix' => 'dashboard'], function() {
     Route::get('/', 'DashboardController@dashboard');
     Route::get('/invoices', 'DashboardController@invoices');
     Route::get('/sales', 'DashboardController@sales');
-    Route::get('/showme', 'DashboardController@showme');
 });
 
 /**
@@ -73,4 +72,17 @@ Route::group(['prefix' => 'subscription'], function() {
     Route::get('cancel/{plan}', 'SubscriptionController@cancel');
     Route::get('resume', 'SubscriptionController@resume');
     Route::post('update-card', 'SubscriptionController@updateCard');
+});
+
+/**
+ * Legal documents
+ */
+Route::group(['prefix' => 'legal'], function() {
+    Route::get('terms', function() {
+        return view('legal.terms');
+    });
+
+    Route::get('privacy', function() {
+        return view('legal.privacy');
+    });
 });

@@ -63,17 +63,4 @@ class DashboardController extends Controller
         return view('dashboard.sales');
     }
 
-    /**
-     * Test
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function showme(Request $request) {
-        $invoices = Invoices::find(3);
-
-        return view('dashboard.showme', [
-            'invoice' => $invoices
-        ]);
-    }
 }
