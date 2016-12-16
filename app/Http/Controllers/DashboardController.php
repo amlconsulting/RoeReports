@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Invoices;
+use App\Clients;
 
 class DashboardController extends Controller
 {
@@ -41,7 +42,11 @@ class DashboardController extends Controller
             return redirect('subscription/plans');
         }
 
-        return view('dashboard.invoices');
+        $invoices = Invoices::where('user_id', '=', $request->user()->id)->get();
+
+        return view('dashboard.invoices', [
+            'invoices' => $invoices
+        ]);
     }
 
     /**
@@ -56,5 +61,19 @@ class DashboardController extends Controller
         }
 
         return view('dashboard.sales');
+    }
+
+    /**
+     * Test
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function showme(Request $request) {
+        $invoices = Invoices::find(3);
+
+        return view('dashboard.showme', [
+            'invoice' => $invoices
+        ]);
     }
 }

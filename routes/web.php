@@ -35,6 +35,7 @@ Route::group(['prefix' => 'dashboard'], function() {
     Route::get('/', 'DashboardController@dashboard');
     Route::get('/invoices', 'DashboardController@invoices');
     Route::get('/sales', 'DashboardController@sales');
+    Route::get('/showme', 'DashboardController@showme');
 });
 
 /**

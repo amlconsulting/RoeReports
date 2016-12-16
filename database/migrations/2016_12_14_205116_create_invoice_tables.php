@@ -14,11 +14,10 @@ class CreateInvoiceTables extends Migration
     public function up() {
         Schema::create('invoiceHeader', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('client_id');
-            //$table->integer('payment_id')->nullable();
+            $table->integer('user_id')->references('id')->on('users');
+            $table->integer('client_id')->references('id')->on('clients');
             $table->integer('invoiceNum');
-            $table->binary('shipped')->default(0);
+            $table->binary('shipped');
             $table->timestamp('invoiceDate');
             $table->double('total');
             $table->double('discount');
@@ -31,8 +30,9 @@ class CreateInvoiceTables extends Migration
         Schema::create('invoiceDetail', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('invoiceHeader_id');
-            $table->integer('item_id');
-            $table->integer('size_id');
+            $table->foreign('invoiceHeader_id')->references('id')->on('invoiceHeader')->onDelete('cascade');
+            $table->integer('item_id')->references('id')->on('item');
+            $table->integer('size_id')->references('id')->on('size');
             $table->integer('quantity');
             $table->double('price');
             $table->timestamps();
