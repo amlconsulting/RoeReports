@@ -1,9 +1,5 @@
-        <nav class="navbar navbar-inverse">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 center">
-                        Copyright &copy; AML Consulting, LLC | All Rights Reserved.
-                    </div>
-                </div>
+        <footer class="footer">
+            <div class="container center">
+                <p>Copyright &copy; AML Consulting, LLC | All Rights Reserved.</p>
             </div>
-        </nav>
+        </footer>

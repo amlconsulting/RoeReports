@@ -34,7 +34,7 @@
     }
 
     .m-b-md {
-        margin-bottom: 30px;
+        margin-bottom: 60px;
     }
 </style>
 @endsection
