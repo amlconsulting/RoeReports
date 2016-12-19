@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">LuLaRoe Login Response</div>
                 <div class="panel-body">
-                    {{ var_dump($response) }}
+                    Cookie: {{ $cookie[0] }}
                 </div>
             </div>
         </div>

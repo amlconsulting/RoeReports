@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;
+Use GuzzleHttp;
+use App\LuLaRoeCookies;
 
 class LuLaRoeController extends Controller {
 
@@ -25,35 +27,32 @@ class LuLaRoeController extends Controller {
      */
     public function sessions(Request $request) {
         $user_credentials = $request->user()->lularoeCredentials()->get();
-        $ch = curl_init();
 
-        curl_setopt_array($ch, array(
-            CURLOPT_URL => 'https://mylularoe.com/sessions',
-            CURLOPT_POST => 1,
-            CURLOPT_SSL_VERIFYHOST => 0,
-            CURLOPT_SSL_VERIFYPEER => 0,
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_FOLLOWLOCATION => 1,
-            CURLOPT_HEADER => 1,
-            CURLOPT_POSTFIELDS => [
+        $client = new GuzzleHttp\Client();
+        $response = $client->request('POST', env('LULAROE_SESSION_URL'), [
+            'verify' => false,
+            'query' => [
                 '_token' => '',
                 'email' => $user_credentials[0]->username,
                 'password' => $user_credentials[0]->password
             ]
-        ));
+        ]);
 
-        $response = curl_exec($ch);
+        $http_cookies = $response->getHeader('Set-Cookie');
+        $user_cookies = $request->user()->lularoeCookies()->get();
 
-        curl_close($ch);
-
-        $pattern  = "/^Set-Cookie:\s*(.*); expires=[a-z]{3},\s*([^;]*);/mi";
-        preg_match_all($pattern, $response, $matches);
-
-        //$cookie = $matches[1][0];
-        //$expires = new DateTime($matches[2][0]);
+        if(count($user_cookies) > 0) {
+            $user_cookies[0]->cookie = $http_cookies[0];
+            $user_cookies[0]->save();
+        } else {
+            $lularoeCookie = new LuLaRoeCookies;
+            $lularoeCookie->user_id = $request->user()->id;
+            $lularoeCookie->cookie = $http_cookies[0];
+            $lularoeCookie->save();
+        }
 
         return view('lularoe.response', [
-            'response' => $matches
+            'cookie' => $response->getHeader('Set-Cookie')
         ]);
     }
 
