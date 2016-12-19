@@ -22,13 +22,4 @@ class Size extends Model {
         'id', 'created_at', 'updated_at'
     ];
 
-    /**
-     * Client details belong to invoice header
-     *
-     * @return mixed
-     */
-    public function invoiceDetail() {
-        return $this->belongsTo('App\InvoiceDetail');
-    }
-
 }

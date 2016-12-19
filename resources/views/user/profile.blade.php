@@ -122,6 +122,26 @@
                     @endif
                 </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">LuLaRoe Login Information</div>
+                        <div class="col-md-6 right"><i class="fa fa-gear fa-fw">&nbsp;</i><a href="{{ url('/llr/edit-login') }}">Edit Details</a></div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="payment-form" action="{{ url('llr/update-login') }}" method="POST">
+                        <div class="form-group">
+                            <label for="llr-username" class="col-md-6 control-label">Username</label>
+                            <div class="col-md-5 user_attribute">{{ $llr[0]->username }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="llr-password" class="col-md-6 control-label">Password</label>
+                            <div class="col-md-5 user_attribute password">************</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

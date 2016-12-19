@@ -61,4 +61,32 @@ class User extends Authenticatable
         $this->activation_token = null;
         $this->save();
     }
+
+    /**
+     * Get the client's LuLaRoe credentials
+     *
+     * @return JSON
+     */
+    public function lularoeCredentials() {
+        return $this->hasOne('App\LuLaRoeCredentials');
+    }
+
+    /**
+     * Get the client's LuLaRoe cookies
+     *
+     * @return JSON
+     */
+    public function lularoeCookies() {
+        return $this->hasOne('App\LuLaRoeCookies');
+    }
+
+    /**
+     * Get the client's invoices
+     *
+     * @return JSON
+     */
+    public function LLRinvoices() {
+        return $this->hasMany('App\Invoices');
+    }
+
 }

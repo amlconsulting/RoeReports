@@ -86,3 +86,9 @@ Route::group(['prefix' => 'legal'], function() {
         return view('legal.privacy');
     });
 });
+
+Route::group(['prefix' => 'llr'], function() {
+    Route::get('edit-login', 'LuLaRoeController@editLogin');
+    Route::post('update-login', 'LuLaRoeController@updateLogin');
+    Route::get('sessions', 'LuLaRoeController@sessions');
+});

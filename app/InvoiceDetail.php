@@ -23,15 +23,6 @@ class InvoiceDetail extends Model {
     ];
 
     /**
-     * Invoice details belong to invoice header
-     *
-     * @return mixed
-     */
-    public function invoices() {
-        return $this->belongsTo('App\Invoices');
-    }
-
-    /**
      * Get the item details for the detail record
      *
      * @return JSON

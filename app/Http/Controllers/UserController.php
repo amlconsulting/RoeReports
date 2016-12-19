@@ -49,7 +49,8 @@ class UserController extends Controller {
                 'subscribed' => $subscribed,
                 'subscription' => $subscription,
                 'onGracePeriod' => $onGracePeriod,
-                'plan' => $plan
+                'plan' => $plan,
+                'llr' => $user->lularoeCredentials()->get()
             ]
         );
     }

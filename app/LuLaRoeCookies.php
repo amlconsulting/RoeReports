@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model {
+class LuLaRoeCookies extends Model {
 
     /**
      * Set the table name
      *
      * @var String
      */
-    protected $table = 'item';
+    protected $table = 'lularoe_cookies';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -19,7 +19,7 @@ class Item extends Model {
      * @var array
      */
     protected $hidden = [
-        'id', 'created_at', 'updated_at'
+        'id', 'user_id', 'created_at', 'updated_at'
     ];
 
 }

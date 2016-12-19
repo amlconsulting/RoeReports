@@ -15,12 +15,4 @@ class Clients extends Model {
         'id', 'created_at', 'updated_at'
     ];
 
-    /**
-     * Client details belong to invoice header
-     *
-     * @return mixed
-     */
-    public function invoices() {
-        return $this->belongsTo('App\Invoices');
-    }
 }

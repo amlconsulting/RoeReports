@@ -42,7 +42,7 @@ class DashboardController extends Controller
             return redirect('subscription/plans');
         }
 
-        $invoices = Invoices::where('user_id', '=', $request->user()->id)->get();
+        $invoices = $request->user()->LLRinvoices()->get();
 
         return view('dashboard.invoices', [
             'invoices' => $invoices
