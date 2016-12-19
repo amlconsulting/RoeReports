@@ -97,7 +97,7 @@
 
 @section('bottom-scripts')
     @parent
-    <script src="{{ url('/vendors/datatables/base/js/jquery.datatables.min.js') }}"></script>
+    <script src="{{ url('/vendors/datatables/base/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ url('/vendors/datatables/plugins/dataTables.bootstrap.min.js') }}"></script>
     <script src="{{ url('/vendors/datatables/responsive/dataTables.responsive.js') }}"></script>
     <script>
