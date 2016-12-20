@@ -6,6 +6,15 @@
     <link href="{{ url('/vendors/datatables/responsive/dataTables.responsive.css') }}" rel="stylesheet">
 @endsection
 
+@section('styles')
+    @parent
+    <style>
+        .new-invoice {
+            margin-left: 20px;
+        }
+    </style>
+@endsection
+
 @section('page')
     <div id="page-wrapper">
         <div class="row">
@@ -24,9 +33,9 @@
                                     <th>Client</th>
                                     <th>Invoice Date</th>
                                     <th>Total</th>
-                                    <th>Discount</th>
                                     <th>Tax</th>
                                     <th>Sub Total</th>
+                                    <th>Discount</th>
                                     <th>Total Paid</th>
                                     <th class="none">Detail</th>
                                 </tr>
@@ -38,9 +47,9 @@
                                         <td>{{ $invoice->client->name }}</td>
                                         <td>{{ $invoice->invoiceDate }}</td>
                                         <td>${{ $invoice->total }}</td>
-                                        <td>${{ $invoice->discount }}</td>
                                         <td>${{ $invoice->tax }}</td>
                                         <td>${{ $invoice->subTotal }}</td>
+                                        <td>${{ $invoice->discount }}</td>
                                         <td>${{ $invoice->totalPaid }}</td>
                                         <td>
                                             <table width="100%" class="table table-striped table-bordered table-hover">
@@ -102,7 +111,7 @@
     <script src="{{ url('/vendors/datatables/responsive/dataTables.responsive.js') }}"></script>
     <script>
         $(document).ready(function() {
-            console.log('{{ $invoices }}')
+
             $('#invoice-datatable').DataTable({
                 responsive: true,
                 columnDefs: [
@@ -113,10 +122,8 @@
                     }
                 ]
             });
-        });
 
-        function showInvoiceData(invoiceNum) {
-            $('#invoice-detail-modal').modal('show');
-        }
+            $('.dataTables_length').append('<a href="{{ url('/llr/invoice') }}" class="new-invoice"><i class="fa fa-plus"></i> New</a>');
+        });
     </script>
 @endsection

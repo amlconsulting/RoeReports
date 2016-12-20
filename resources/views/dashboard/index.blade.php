@@ -32,6 +32,7 @@
                         </li>
                         <li>
                             <a href="{{ url('/dashboard/invoices') }}"><i class="fa fa-files-o fa-fw"></i> Invoices</a>
+                            <a href="{{ url('/llr/invoice') }}" class="pull-right"><i class="fa fa-plus"></i> New</a>
                         </li>
                         <li>
                             <a href="{{ url('/dashboard/sales') }}"><i class="fa fa-tags fa-fw"></i> Sales</a>
