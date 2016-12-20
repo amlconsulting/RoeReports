@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Cashier\Billable;
 use Carbon\Carbon;
+use Psy\Util\Json;
 
 class User extends Authenticatable
 {
@@ -87,6 +88,15 @@ class User extends Authenticatable
      */
     public function LLRinvoices() {
         return $this->hasMany('App\Invoices');
+    }
+
+    /**
+     * Get the user's clients
+     *
+     * @return Json
+     */
+    public function clients() {
+        return $this->hasMany('App\Clients');
     }
 
 }

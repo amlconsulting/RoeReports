@@ -8,7 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'Absolute_Positioner' => $vendorDir . '/dompdf/dompdf/include/absolute_positioner.cls.php',
     'Abstract_Renderer' => $vendorDir . '/dompdf/dompdf/include/abstract_renderer.cls.php',
+    'AddUseridClientsTable' => $baseDir . '/database/migrations/2016_12_19_181801_add_userid_clients_table.php',
     'Adobe_Font_Metrics' => $vendorDir . '/phenx/php-font-lib/classes/Adobe_Font_Metrics.php',
+    'AlterInvoiceAddPaidColumn' => $baseDir . '/database/migrations/2016_12_19_191442_alter_invoice_add_paid_column.php',
     'AlterInvoiceColumns' => $baseDir . '/database/migrations/2016_12_16_092422_alter_invoice_columns.php',
     'AlterLularoeCookiesTable' => $baseDir . '/database/migrations/2016_12_19_121002_alter_lularoe_cookies_table.php',
     'Attribute_Translator' => $vendorDir . '/dompdf/dompdf/include/attribute_translator.cls.php',

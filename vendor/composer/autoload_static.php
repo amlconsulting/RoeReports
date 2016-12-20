@@ -361,7 +361,9 @@ class ComposerStaticInitfe69415b0c4b8176c5f461b26b93f8c1
     public static $classMap = array (
         'Absolute_Positioner' => __DIR__ . '/..' . '/dompdf/dompdf/include/absolute_positioner.cls.php',
         'Abstract_Renderer' => __DIR__ . '/..' . '/dompdf/dompdf/include/abstract_renderer.cls.php',
+        'AddUseridClientsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_19_181801_add_userid_clients_table.php',
         'Adobe_Font_Metrics' => __DIR__ . '/..' . '/phenx/php-font-lib/classes/Adobe_Font_Metrics.php',
+        'AlterInvoiceAddPaidColumn' => __DIR__ . '/../..' . '/database/migrations/2016_12_19_191442_alter_invoice_add_paid_column.php',
         'AlterInvoiceColumns' => __DIR__ . '/../..' . '/database/migrations/2016_12_16_092422_alter_invoice_columns.php',
         'AlterLularoeCookiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_19_121002_alter_lularoe_cookies_table.php',
         'Attribute_Translator' => __DIR__ . '/..' . '/dompdf/dompdf/include/attribute_translator.cls.php',

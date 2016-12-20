@@ -100,4 +100,18 @@ class LuLaRoeController extends Controller {
         return redirect('user/profile');
     }
 
+    /**
+     * Get the Add Invoice form
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addInvoice(Request $request) {
+        $clients = $request->user()->clients()->get();
+
+        return view('lularoe.invoice', [
+            'clients' => $clients
+        ]);
+    }
+
 }
