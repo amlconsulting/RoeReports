@@ -57,7 +57,9 @@
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>
-                                <a href="redirect"> FaceBook Login</a>
+                                @if(env('FACEBOOK_LOGIN_ACTIVE'))
+                                    <a href="redirect"> FaceBook Login</a>
+                                @endif
                             </div>
                         </div>
                     </form>

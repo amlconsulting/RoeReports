@@ -114,6 +114,7 @@
 
             $('#invoice-datatable').DataTable({
                 responsive: true,
+                order: [[ 2, "desc" ]],
                 columnDefs: [
                     {
                         targets: [ 3 ],

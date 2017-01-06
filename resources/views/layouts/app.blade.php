@@ -19,7 +19,6 @@
 
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="{{ url('/js/app.js') }}"></script>
         @yield('bottom-scripts')
         <script src="{{ url('/js/RoeReports.js') }}"></script>
     </body>

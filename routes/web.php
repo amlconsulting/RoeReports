@@ -91,5 +91,6 @@ Route::group(['prefix' => 'llr'], function() {
     Route::get('edit-login', 'LuLaRoeController@editLogin');
     Route::post('update-login', 'LuLaRoeController@updateLogin');
     Route::get('sessions', 'LuLaRoeController@sessions');
-    Route::get('invoice', 'LuLaRoeController@addInvoice');
+    Route::get('invoice', 'LuLaRoeController@invoice');
+    Route::post('add-invoice', 'LuLaRoeController@addInvoice');
 });
