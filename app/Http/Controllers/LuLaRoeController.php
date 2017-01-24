@@ -171,7 +171,11 @@ class LuLaRoeController extends Controller {
             $invoice->total = $inputs['total'];
             $invoice->tax = $inputs['tax'];
             $invoice->subTotal = $inputs['subTotal'];
-            $invoice->discount = $inputs['discount'];
+
+            if(isset($inputs['discount']) && $inputs['discount'] > 0){
+                $invoice->discount = $inputs['discount'];
+            }
+
             $invoice->totalPaid = $inputs['totalPaid'];
             $invoice->paid = (isset($inputs['paid']) && $inputs['paid'] === 'on') ? 1 : 0;
             $invoice->shipped = (isset($inputs['shipped']) && $inputs['shipped'] === 'on') ? 1 : 0;
