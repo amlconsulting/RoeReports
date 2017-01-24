@@ -366,8 +366,6 @@
         </div>
     </div>
 </div>
-{{ var_dump($errors->all()) }}
-{{ var_dump($old) }}
 @endsection
 
 @section('bottom-scripts')

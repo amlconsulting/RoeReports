@@ -209,7 +209,7 @@ class LuLaRoeController extends Controller {
         $validations = [];
 
         //Invoice Validations
-        $validations['invoiceNum'] = 'required|numeric';
+        $validations['invoiceNum'] = 'required|numeric|max:9999999999';
         $validations['client'] = 'required_without:newClient|integer';
         $validations['invoiceDate'] = 'required:date';
 
