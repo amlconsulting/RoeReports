@@ -28,7 +28,11 @@ class DashboardController extends Controller
             return redirect('subscription/plans');
         }
 
-        return view('dashboard.dashboard');
+        $invoices = $request->user()->LLRinvoices()->get();
+
+        return view('dashboard.dashboard', [
+            'invoices' => $invoices
+        ]);
     }
 
     /**
