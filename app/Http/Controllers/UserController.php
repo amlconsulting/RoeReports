@@ -42,8 +42,6 @@ class UserController extends Controller {
             $plan = null;
         }
 
-        $llr = $user->lularoeCredentials()->get()->first();
-
         return view('user.profile',
             [
                 'user' => $user,
