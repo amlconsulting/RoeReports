@@ -58,7 +58,7 @@
     @if(Auth::user() && $user_current_plan !== null)
         <div class="row">
             <div class="col-md-12 center">
-                <p class="top-margin-md">We don't want to see you go, but if you need to cancel your subscription, please click <a href="{{ url('subscription/cancel/' . $user_current_plan) }}">here</a>.</p>
+                <p class="top-margin-md">We don't want to see you go, but if you need to cancel your subscription, please click <a href="{{ url('subscription/cancel/confirm/' . $user_current_plan) }}">here</a>.</p>
             </div>
         </div>
     @endif

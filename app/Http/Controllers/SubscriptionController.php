@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Laravel\Cashier;
 use Stripe;
+use Validator;
 
 class SubscriptionController extends Controller {
 
@@ -14,10 +15,6 @@ class SubscriptionController extends Controller {
     public function __construct() {
         Stripe\Stripe::setApiKey(Cashier\Billable::getStripeKey());
     }
-
-    /*public function getUserSubscription() {
-        return $this->user;
-    }*/
 
     /**
      * Shows the user the plan choices
@@ -95,6 +92,21 @@ class SubscriptionController extends Controller {
     }
 
     /**
+     * Confirmation page to cancel subscription
+     *
+     * @param Request $request
+     * @param String $plan
+     * @return \Illuminate\Http\Response
+     */
+    public function cancelConfirm(Request $request, $plan) {
+        $this->middleware('auth');
+
+        return view('subscriptions.cancel', [
+            'plan' => $plan
+        ]);
+    }
+
+    /**
      * Cancel the user's subscription
      *
      * @param Request $request
@@ -103,6 +115,14 @@ class SubscriptionController extends Controller {
      */
     public function cancel(Request $request, $plan) {
         $this->middleware('auth');
+
+        $messages = [
+            'g-recaptcha-response.required' => "You must prove you're human first."
+        ];
+
+        $validations = ['g-recaptcha-response' => 'required:captcha'];
+
+        Validator::make($request->all(), $validations, $messages)->validate();
 
         $request->user()->subscription('main')->cancel();
 
