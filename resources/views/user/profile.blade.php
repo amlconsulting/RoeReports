@@ -130,16 +130,29 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" id="payment-form" action="{{ url('llr/update-login') }}" method="POST">
-                        <div class="form-group">
-                            <label for="llr-username" class="col-md-6 control-label">Username</label>
-                            <div class="col-md-5 user_attribute">{{ $llr[0]->username }}</div>
+                    @if($llr)
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="llr-username" class="col-md-6 control-label">Username</label>
+                                <div class="col-md-5 user_attribute">{{ $llr->username }}</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="llr-password" class="col-md-6 control-label">Password</label>
+                                <div class="col-md-5 user_attribute password">************</div>
+                            </div>
+                        </form>
+                    @else
+                        <div class="row">
+                            <div class="col-md-12 center">
+                                Please provide your LuLaRoe login details by clicking Edit Details.
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="llr-password" class="col-md-6 control-label">Password</label>
-                            <div class="col-md-5 user_attribute password">************</div>
+                        <div class="row">
+                            <div class="col-md-12 center">
+                                Your information is always kept safe and never shared. We use this information to retrieve sales data directly from LuLaRoe.
+                            </div>
                         </div>
-                    </form>
+                    @endif
                 </div>
             </div>
         </div>

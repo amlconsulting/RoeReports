@@ -42,6 +42,8 @@ class UserController extends Controller {
             $plan = null;
         }
 
+        $llr = $user->lularoeCredentials()->get()->first();
+
         return view('user.profile',
             [
                 'user' => $user,
@@ -50,7 +52,7 @@ class UserController extends Controller {
                 'subscription' => $subscription,
                 'onGracePeriod' => $onGracePeriod,
                 'plan' => $plan,
-                'llr' => $user->lularoeCredentials()->get()
+                'llr' => $user->lularoeCredentials()->get()->first()
             ]
         );
     }
