@@ -27,8 +27,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/subscription/view-plans') }}"><i class="fa fa-tags fa-fw"></i> Pricing</a></li>
-                            <li><a href="{{ url('/register') }}"><i class="fa fa-user fa-fw"></i> Register</a></li>
-                            <li><a href="{{ url('/login') }}"><i class="fa fa-sign-in fa-fw"></i> Login</a></li>
+                            <li><a href="{{ url('/facebook/login') }}"><i class="fa fa-sign-in fa-fw"></i> Facebook Login</a></li>
                         @else
                             <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
                             <li><a href="{{ url('/user/profile') }}"><i class="fa fa-user fa-fw"></i> Profile</a></li>

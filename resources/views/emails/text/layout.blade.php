@@ -1,6 +1,6 @@
 {{ env('APP_NAME') }}
 
-Hello, {{ $user->first_name }}!
+Hello, {{ $user->name }}!
 
 @yield('content')
 

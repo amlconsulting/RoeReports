@@ -16,17 +16,10 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return view('welcome');
+    return view('dashboard.index');
 });
 
-Auth::routes();
-
-/**
- * User Registration
- */
-Route::group(['prefix' => 'register'], function() {
-    Route::get('confirm/{activation_token}', 'Auth\RegisterController@confirm');
-});
+//Auth::routes();
 
 /**
  * Dashboard
@@ -36,12 +29,6 @@ Route::group(['prefix' => 'dashboard'], function() {
     Route::get('/invoices', 'DashboardController@invoices');
     Route::get('/sales', 'DashboardController@sales');
 });
-
-/**
- * SocialAuth
- */
-Route::get('/redirect', 'SocialAuthController@redirect');
-Route::get('/callback', 'SocialAuthController@callback');
 
 /**
  * User Profile
@@ -88,6 +75,9 @@ Route::group(['prefix' => 'legal'], function() {
     });
 });
 
+/**
+ * LuLaRoe
+ */
 Route::group(['prefix' => 'llr'], function() {
     Route::get('edit-login', 'LuLaRoeController@editLogin');
     Route::post('update-login', 'LuLaRoeController@updateLogin');

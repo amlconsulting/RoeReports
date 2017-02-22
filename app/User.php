@@ -19,16 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'notification_email', 'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token'
+        'name', 'email', 'notification_email', 'facebook_id', 'facebook_access_token'
     ];
 
     /**
@@ -46,10 +37,6 @@ class User extends Authenticatable
      */
     public static function boot() {
         parent::boot();
-
-        static::creating(function($user) {
-            $user->activation_token = str_random(40);
-        });
     }
 
     /**
