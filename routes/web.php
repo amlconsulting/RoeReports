@@ -95,3 +95,11 @@ Route::group(['prefix' => 'llr'], function() {
     Route::get('invoice', 'LuLaRoeController@invoice');
     Route::post('add-invoice', 'LuLaRoeController@addInvoice');
 });
+
+/**
+ * Facebook
+ */
+Route::group(['prefix' => 'facebook'], function() {
+    Route::get('login', 'FacebookController@login');
+    Route::get('callback', 'FacebookController@callback');
+});
