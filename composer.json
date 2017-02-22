@@ -12,7 +12,8 @@
         "laravel/cashier": "^7.0",
         "stripe/stripe-php": "v3.9.2",
         "doctrine/dbal": "^2.5",
-        "anhskohbo/no-captcha": "^2.3"
+        "anhskohbo/no-captcha": "^2.3",
+        "sammyk/laravel-facebook-sdk": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
